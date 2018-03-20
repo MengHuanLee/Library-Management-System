@@ -60,8 +60,6 @@ public class BookBorrowActivity extends AppCompatActivity implements View.OnClic
         username = intent.getStringExtra("UserID");
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
-
     }
 
 
@@ -161,6 +159,14 @@ public class BookBorrowActivity extends AppCompatActivity implements View.OnClic
                             childUpdates.put("/Books/"+element.title+"/current_status/","Borrow");
                             childUpdates.put("/Users/"+username+"/num_of_borrowed_book/",book_count+1);
                             mDatabase.updateChildren(childUpdates);
+
+                            String useremail = dataSnapshot.child(username).child("email").getValue(String.class);
+                            String booktitle = element.title;
+                            String messageOne = "You have succesfully checkout book: " + booktitle + "\n";
+                            String messageTwo = "The transaction date is: " + df.format(dateobj) + "\n";
+                            String messageThree = "The due date is: " + df.format(dueDate)+ "\n";
+                            String subject = "Book Checkout Confirmation";
+                            sendEmail(useremail, messageOne + messageTwo + messageThree, subject);
                         }
                     }
 
@@ -176,6 +182,15 @@ public class BookBorrowActivity extends AppCompatActivity implements View.OnClic
 
             adapter.notifyDataSetChanged();
         }
+    }
+
+    private void sendEmail(String email, String message, String subject) {
+        //Getting content for email
+        //Creating SendMail object
+        EmailReturnConfirmation sm = new EmailReturnConfirmation(this, email, subject, message);
+
+        //Executing sendmail to send email
+        sm.execute();
     }
 
     class ListViewAdapter extends BaseAdapter {
