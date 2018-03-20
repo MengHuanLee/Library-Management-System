@@ -32,8 +32,8 @@ import java.util.LinkedList;
 
 public class BookSearchActivity extends AppCompatActivity implements View.OnClickListener{
 
-    String username;
-    ImageButton imageButtonSearch;
+    private String username;
+    private ImageButton imageButtonSearch;
     private Button buttonBorrow;
     private DatabaseReference mDatabase;
     private ConstraintLayout cl;

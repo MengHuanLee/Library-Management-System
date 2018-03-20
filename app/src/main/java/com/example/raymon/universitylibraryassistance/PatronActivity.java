@@ -30,6 +30,7 @@ public class PatronActivity extends AppCompatActivity implements View.OnClickLis
     private Button buttonReturn;
     private TextView TextViewUsername;
     private String username;
+    private String email;
     private DatabaseReference mDatabase;
     Date today = new Date();
     long new_date = today.getTime()+1000*60*60*24*TestAssistanceActivity.offset[0];
@@ -41,8 +42,9 @@ public class PatronActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_patron);
         Intent intent = getIntent();
         username = intent.getStringExtra("UserID");
+        email = intent.getStringExtra("email");
         TextViewUsername = findViewById(R.id.textViewAccount);
-        TextViewUsername.setText(username);
+        TextViewUsername.setText(email);//TextViewUsername.setText(username);
         buttonCheckOut = findViewById(R.id.buttonCheckOut);
         buttonCheckOut.setOnClickListener(this);
         buttonReturn = findViewById(R.id.buttonReturn);

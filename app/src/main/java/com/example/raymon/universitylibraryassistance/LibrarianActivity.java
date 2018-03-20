@@ -17,15 +17,17 @@ public class LibrarianActivity extends AppCompatActivity implements View.OnClick
     private Button buttonManage;
     private Button buttonCirculation;
     private Button buttonTest;
-    String username;
+    private String username;
+    private String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_librarian);
         Intent intent = getIntent();
         username = intent.getStringExtra("UserID");
+        email = intent.getStringExtra("email");
         textViewAccount = findViewById(R.id.textViewAccount);
-        textViewAccount.setText(username);
+        textViewAccount.setText(email);//textViewAccount.setText(username);
         buttonManage = findViewById(R.id.buttonManage);
         buttonManage.setOnClickListener(this);
         buttonCirculation = findViewById(R.id.buttonCirculation);

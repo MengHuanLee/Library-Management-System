@@ -23,7 +23,7 @@ public class BookManagementActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_management);
         Intent intent = getIntent();
-        username = intent.getStringExtra("");
+        username = intent.getStringExtra("email");
         mButtonAdd = findViewById(R.id.buttonAdd);
         mButtonAdd.setOnClickListener(this);
         mButtonSearch = findViewById(R.id.buttonSearch);

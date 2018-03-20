@@ -149,17 +149,16 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "signInWithEmail:success",
                                         Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "signInWithEmail:success");
-                                if(LibrarianOrNot(user.getEmail()))
-                                {
-                                    Intent intent = new Intent(getApplicationContext(),LibrarianActivity.class);
-                                    intent.putExtra("UserID",user.getUid());
-                                    startActivity(intent);
+                                Intent intent = null;
+                                if(LibrarianOrNot(user.getEmail())) {
+                                    intent = new Intent(getApplicationContext(),LibrarianActivity.class);
                                 }
-                                else{
-                                    Intent intent = new Intent(getApplicationContext(),PatronActivity.class);
-                                    intent.putExtra("UserID",user.getUid());
-                                    startActivity(intent);
+                                else {
+                                    intent = new Intent(getApplicationContext(),PatronActivity.class);
                                 }
+                                intent.putExtra("UserID",user.getUid());
+                                intent.putExtra("email",user.getEmail());
+                                startActivity(intent);
 
                             }
                             else{
